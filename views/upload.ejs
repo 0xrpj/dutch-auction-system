@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Dutch Auction System</title>
+</head>
+
+<body>
+
+    <header>
+        DUTCH AUCTION SYSTEM
+    </header>
+
+    <div id="nft-info">
+        <img src="uploads/images/<%= name %>" alt="An image" width="200px" />
+        <br /><br />
+        File: <%= name %> <br /><br />
+            SHA-256 Hash: <%= hash %>
+                <br /><br />
+                Current Price (in $):
+                <h3 id="price">
+                    <%= bid %>
+                </h3>
+
+                <br />
+
+                <a href="uploads/images/<%= name %>">
+                    <button id="buynow" onclick="stopTimer();">BUY NOW!</button></a>
+    </div>
+
+    <script>
+        var stop;
+        function timer(interval = 5000) {
+
+            stop = false;
+
+            function loop(count = 1) {
+
+                if (stop) {
+                    return;
+                }
+
+                document.getElementById("price").innerText = parseFloat(document.getElementById("price").innerText) - 0.1;
+
+                setTimeout(loop, interval, ++count);
+            }
+            loop();
+        }
+
+        function stopTimer() {
+            stop = true;
+            window.alert("You have bought the NFT at " + document.getElementById("price").innerText + "$ !");
+        }
+
+
+        window.onload = function () {
+            //time is set in milliseconds
+            setTimeout(timer, 10000)
+        };
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
