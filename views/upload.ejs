@@ -29,11 +29,43 @@
 
                 <br />
 
-                <a href="uploads/images/<%= name %>">
-                    <button id="buynow" onclick="stopTimer();">BUY NOW!</button></a>
+
+                <button id="buynow" onclick="stopTimer();">BUY NOW!</button>
+
+                <div id="table">
+                    <table style="width:50%" id="myTable">
+                        <tr>
+                            <th>Bidders</th>
+                            <th>Price</th>
+                            <th>Time</th>
+                        </tr>
+
+                        <tr>
+                            <td>Roshan Parajuli (Seller)</td>
+                            <td>
+                                <%= bid %> $
+                            </td>
+                            <td>3/12/2021</td>
+                        </tr>
+
+                    </table>
+                </div>
     </div>
 
     <script>
+
+        function getTime() {
+            var currentdate = new Date();
+            var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth() + 1) + "/"
+                + currentdate.getFullYear() + " @ "
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ":"
+                + currentdate.getSeconds();
+
+            console.log(datetime);
+        }
+
         var stop;
         function timer(interval = 5000) {
 
@@ -54,7 +86,32 @@
 
         function stopTimer() {
             stop = true;
-            window.alert("You have bought the NFT at " + document.getElementById("price").innerText + "$ !");
+
+            var currentdate = new Date();
+            var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth() + 1) + "/"
+                + currentdate.getFullYear() + " @ "
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ":"
+                + currentdate.getSeconds();
+
+            console.log(datetime);
+
+            name_inserted = prompt("Enter your name:");
+
+            var table = document.getElementById("myTable");
+            var row = table.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            cell1.innerHTML = name_inserted;
+            cell2.innerHTML = document.getElementById("price").innerText + "$";
+            cell3.innerHTML = datetime;
+
+
+            //document.getElementById("fill-data").innerHTML += "<tr><td> Suman Raj Khanal</td><td>12/3 9:23 AM</td></tr>";
+
+            //window.alert("You have bought the NFT at " + document.getElementById("price").innerText + "$ !");
         }
 
 
